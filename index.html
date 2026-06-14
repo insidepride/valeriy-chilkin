@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Валерий Чилкин - практикующий психолог</title>
+  <meta name="description" content="Психолог для подростков и взрослых в Северодвинске и онлайн. Консультации, тренинги, поддержка в сложных переживаниях и отношениях.">
+  <style>
+    :root {
+      --ink: #0e2a4a;
+      --muted: #536579;
+      --olive: #74865c;
+      --olive-dark: #61714e;
+      --line: #e8edf3;
+      --soft: #f6f8f6;
+      --blue-soft: #eef5fb;
+      --cream: #f7f0e5;
+      --shadow: 0 8px 28px rgba(25, 43, 67, .09);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1060px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 0;
+    }
+
+    .nav {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 23px;
+      line-height: 1;
+      letter-spacing: .01em;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 44px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(25, 43, 67, .14);
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: var(--olive);
+    }
+
+    .btn.primary:hover { background: var(--olive-dark); }
+
+    .btn.secondary {
+      color: #2e5f9f;
+      background: #fff;
+      border-color: #8fb0d6;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, #fff 0%, rgba(255,255,255,.98) 39%, rgba(255,255,255,.62) 56%, rgba(255,255,255,0) 76%),
+        linear-gradient(180deg, #fbfaf7 0%, #fff 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -34px;
+      bottom: 8px;
+      width: 130px;
+      height: 230px;
+      background:
+        radial-gradient(ellipse at 68% 20%, rgba(116,134,92,.16), transparent 42%),
+        radial-gradient(ellipse at 42% 50%, rgba(116,134,92,.12), transparent 46%),
+        radial-gradient(ellipse at 68% 80%, rgba(116,134,92,.12), transparent 44%);
+      transform: rotate(-16deg);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      min-height: 382px;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      padding: 50px 0 54px;
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      max-width: 585px;
+      font-size: clamp(31px, 4vw, 43px);
+      line-height: 1.12;
+      letter-spacing: -.02em;
+    }
+
+    .lead {
+      max-width: 410px;
+      color: #31465e;
+      font-size: 17px;
+      margin: 0 0 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-photo {
+      align-self: stretch;
+      min-height: 382px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.80), rgba(255,255,255,.08) 34%, rgba(255,255,255,0) 100%),
+        url("assets/hero-new.jpg") center 20% / cover no-repeat;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 26px 0 22px;
+      border-top: 1px solid rgba(232,237,243,.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 54px;
+      padding: 0 24px;
+      border-right: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 700;
+      color: #203955;
+    }
+
+    .fact:first-child { padding-left: 0; }
+    .fact:last-child { border-right: 0; }
+
+    .icon {
+      flex: 0 0 auto;
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--olive);
+      background: #f1f5f9;
+      font-size: 22px;
+    }
+
+    section { padding: 28px 0; }
+
+    #about { padding-top: 30px; }
+    #requests { padding-top: 8px; }
+    #format { padding-top: 18px; }
+    #certificates { padding-top: 24px; }
+
+    .section-title {
+      margin: 0 0 22px;
+      font-size: clamp(25px, 3vw, 30px);
+      line-height: 1.2;
+      letter-spacing: -.01em;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 2px;
+      margin-top: 7px;
+      background: var(--olive);
+      border-radius: 99px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr 292px;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .portrait {
+      width: 100%;
+      height: 345px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .text p {
+      margin: 0 0 13px;
+      color: #263d57;
+      font-size: 13px;
+    }
+
+    .info-card {
+      padding: 26px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #f6f7ef, #fff);
+      box-shadow: var(--shadow);
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .info-item:last-child { margin-bottom: 0; }
+
+    .info-item b {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .info-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .requests-wrap {
+      display: grid;
+      grid-template-columns: 1fr 290px;
+      gap: 26px;
+      align-items: stretch;
+      padding: 0;
+      border-radius: 0;
+      background: #fff;
+      box-shadow: none;
+    }
+
+    #requests .container {
+      padding: 28px 0 18px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 20px 48px rgba(25, 43, 67, .055);
+    }
+
+    .request-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .request {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(25, 43, 67, .06);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .not-work {
+      padding: 24px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #edf6ff, #f8fbff);
+    }
+
+    .not-work h3 {
+      margin: 0 0 16px;
+      font-size: 21px;
+    }
+
+    .not-work ul {
+      margin: 0 0 20px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .not-work li {
+      margin-bottom: 12px;
+      color: #263d57;
+      font-size: 13px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .work-card {
+      min-height: 140px;
+      grid-template-columns: 58px 1fr;
+      gap: 18px;
+      padding: 26px;
+      border-radius: var(--radius);
+      background: var(--soft);
+      box-shadow: 0 12px 34px rgba(25, 43, 67, .07);
+    }
+
+    .work-card:nth-child(2) { background: var(--blue-soft); }
+    .work-card:nth-child(3) { background: var(--cream); }
+
+    .work-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .work-card p {
+      margin: 0;
+      color: #31465e;
+      font-size: 14px;
+    }
+
+    .certificates p {
+      margin-top: -10px;
+      color: var(--muted);
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 9px;
+      margin: 20px 0 18px;
+    }
+
+    .cert-card {
+      display: block;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 8px 18px rgba(25, 43, 67, .08);
+      background: #f4f4f0;
+      border: 1px solid var(--line);
+    }
+
+    .cert-card img {
+      width: 100%;
+      height: 126px;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform .25s ease;
+    }
+
+    .cert-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .cert-card:nth-child(n+8) { display: none; }
+
+    .center { text-align: center; }
+
+    .cta {
+      margin: 20px 0 10px;
+    }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: .92fr .94fr .95fr;
+      gap: 26px;
+      align-items: center;
+      overflow: hidden;
+      padding: 28px 36px;
+      border-radius: 14px;
+      background: linear-gradient(100deg, #eef5fb 0%, #fff 48%, #f2efe5 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box p {
+      color: #31465e;
+      font-size: 14px;
+    }
+
+    .cta h2 {
+      margin: 0 0 16px;
+      font-size: clamp(25px, 3.4vw, 34px);
+      line-height: 1.1;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      font-weight: 700;
+    }
+
+    .contact-list span {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .footer-photo {
+      height: 150px;
+      width: 100%;
+      object-fit: cover;
+      object-position: center 28%;
+      border-radius: 10px;
+    }
+
+    .footer {
+      padding: 8px 0 18px;
+      color: #7a8795;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    @media (max-width: 920px) {
+      .menu {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .requests-wrap,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        min-height: 340px;
+        margin: 0 -20px;
+      }
+
+      .facts,
+      .request-list,
+      .work-grid,
+      .cert-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .fact {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 16px 0;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .hero-copy {
+        padding: 34px 0 24px;
+      }
+
+      .lead {
+        font-size: 17px;
+      }
+
+      .actions,
+      .facts,
+      .request-list,
+      .work-grid,
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .requests-wrap,
+      .cta-box {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="На главную">
+        <strong>Валерий Чилкин</strong>
+        <span>практикующий психолог</span>
+      </a>
+      <nav class="menu" aria-label="Основная навигация">
+        <a href="#about">Обо мне</a>
+        <a href="#requests">Запросы</a>
+        <a href="#format">Формат работы</a>
+        <a href="#certificates">Сертификаты</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a class="btn primary" href="https://vk.com/psihologchilkin" target="_blank" rel="noopener">Записаться</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Психолог для подростков и взрослых в Северодвинске и онлайн</h1>
+          <p class="lead">Помогаю разобраться в сложных переживаниях, отношениях, тревожности, самооценке и жизненных смыслах.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://vk.com/psihologchilkin" target="_blank" rel="noopener">Записаться на консультацию</a>
+            <a class="btn secondary" href="https://vk.com/psihologchilkin" target="_blank" rel="noopener">Написать во ВКонтакте</a>
+          </div>
+        </div>
+        <div class="hero-photo" role="img" aria-label="Валерий Чилкин"></div>
+      </div>
+    </section>
+
+    <div class="container facts" aria-label="Ключевая информация">
+      <div class="fact"><span class="icon">▣</span>В профессии<br>с 2013 года</div>
+      <div class="fact"><span class="icon">⌖</span>Очно в Северодвинске<br>и онлайн</div>
+      <div class="fact"><span class="icon">☷</span>Опыт работы с подростками<br>и взрослыми</div>
+      <div class="fact"><span class="icon">○</span>Тренинги<br>и индивидуальные консультации</div>
+    </div>
+
+    <section id="about">
+      <div class="container about-grid">
+        <img class="portrait" src="assets/about-new.jpg" alt="Валерий Чилкин, фото профиля">
+        <div class="text">
+          <h2 class="section-title">Обо мне</h2>
+          <p>Здравствуйте, меня зовут Чилкин Валерий Николаевич. Я практикующий психолог.</p>
+          <p>Интерес к практической психологии появился ещё во время обучения в университете, а с 2009 года я начал активно изучать различные психологические и психотерапевтические методы.</p>
+          <p>В профессии с 2013 года. После окончания университета 7,5 лет проработал психологом в социально-реабилитационном центре для несовершеннолетних.</p>
+          <p>Также 6 лет являлся консультантом Детского телефона доверия. Сейчас продолжаю консультативную и тренинговую деятельность.</p>
+        </div>
+        <aside class="info-card" aria-label="Образование и подход">
+          <div class="info-item">
+            <span class="icon">▱</span>
+            <div><b>Образование</b><span>ГИ филиала САФУ, гуманитарный институт, кафедра педагогики.</span></div>
+          </div>
+          <div class="info-item">
+            <span class="icon">▤</span>
+            <div><b>Дополнительное образование</b><span>Регулярно прохожу обучение, участвую в семинарах и программах повышения квалификации.</span></div>
+          </div>
+          <div class="info-item">
+            <span class="icon">♙</span>
+            <div><b>Подход</b><span>Конфиденциальность, уважение и бережное отношение к вашей истории.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="requests">
+      <div class="container requests-wrap">
+        <div>
+          <h2 class="section-title">С какими вопросами можно обратиться</h2>
+          <div class="request-list">
+            <div class="request"><span class="icon">∞</span>Межличностные отношения</div>
+            <div class="request"><span class="icon">♧</span>Детско-родительские отношения</div>
+            <div class="request"><span class="icon">♡</span>Переживания горя, утраты</div>
+            <div class="request"><span class="icon">◇</span>Потеря смыслов</div>
+            <div class="request"><span class="icon">☁</span>Тревожность, страхи</div>
+            <div class="request"><span class="icon">♙</span>Самооценка</div>
+            <div class="request"><span class="icon">☷</span>Тренинги с детьми и взрослыми</div>
+          </div>
+        </div>
+        <aside class="not-work">
+          <h3>С чем не работаю</h3>
+          <ul>
+            <li>× Исправьте мне мужа, жену, ребёнка, котёнка</li>
+            <li>× Дайте совет так, чтобы всё решилось сразу</li>
+          </ul>
+          <p>Если вы готовы уделить себе время и внимание к тому, что происходит в вашей жизни, буду рад встрече.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="format">
+      <div class="container">
+        <h2 class="section-title">Формат работы</h2>
+        <div class="work-grid">
+          <article class="work-card">
+            <span class="icon">▢</span>
+            <div><h3>Очные консультации</h3><p><b>Северодвинск</b><br>Уютный кабинет для личной встречи и доверительного разговора.</p></div>
+          </article>
+          <article class="work-card">
+            <span class="icon">▭</span>
+            <div><h3>Онлайн-консультации</h3><p>Любой удобный для вас мессенджер. Встречаемся онлайн из любой точки мира.</p></div>
+          </article>
+          <article class="work-card">
+            <span class="icon">☎</span>
+            <div><h3>Запись</h3><p>В личные сообщения или по телефону.<br><b>8 952 308 76 79</b></p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="certificates">
+      <div class="container">
+        <h2 class="section-title">Образование и профессиональное развитие</h2>
+        <p>Регулярно прохожу обучение, участвую в семинарах, тренингах и программах повышения квалификации.</p>
+        <div class="cert-grid">
+          <a class="cert-card" href="assets/cert-01.jpg" target="_blank" rel="noopener"><img src="assets/cert-01.jpg" alt="Диплом о высшем образовании"></a>
+          <a class="cert-card" href="assets/cert-02.jpg" target="_blank" rel="noopener"><img src="assets/cert-02.jpg" alt="Удостоверение о повышении квалификации"></a>
+          <a class="cert-card" href="assets/cert-03.jpg" target="_blank" rel="noopener"><img src="assets/cert-03.jpg" alt="Удостоверение Института практической психологии"></a>
+          <a class="cert-card" href="assets/cert-04.jpg" target="_blank" rel="noopener"><img src="assets/cert-04.jpg" alt="Сертификат НЛП-практик"></a>
+          <a class="cert-card" href="assets/cert-05.jpg" target="_blank" rel="noopener"><img src="assets/cert-05.jpg" alt="Сертификат участника курса"></a>
+          <a class="cert-card" href="assets/cert-06.jpg" target="_blank" rel="noopener"><img src="assets/cert-06.jpg" alt="Сертификат семинара"></a>
+          <a class="cert-card" href="assets/cert-07.jpg" target="_blank" rel="noopener"><img src="assets/cert-07.jpg" alt="Сертификат проекта Мои горизонты"></a>
+          <a class="cert-card" href="assets/cert-08.jpg" target="_blank" rel="noopener"><img src="assets/cert-08.jpg" alt="Сертификат прикладных навыков"></a>
+          <a class="cert-card" href="assets/cert-09.jpg" target="_blank" rel="noopener"><img src="assets/cert-09.jpg" alt="Certificate of Attendance"></a>
+          <a class="cert-card" href="assets/cert-10.jpg" target="_blank" rel="noopener"><img src="assets/cert-10.jpg" alt="Сертификат мастер-класса"></a>
+          <a class="cert-card" href="assets/cert-11.jpg" target="_blank" rel="noopener"><img src="assets/cert-11.jpg" alt="Сертификат фестиваля Северное сияние"></a>
+          <a class="cert-card" href="assets/cert-12.jpg" target="_blank" rel="noopener"><img src="assets/cert-12.jpg" alt="Сертификат фестиваля практической психологии"></a>
+          <a class="cert-card" href="assets/cert-13.jpg" target="_blank" rel="noopener"><img src="assets/cert-13.jpg" alt="Свидетельство об обучении"></a>
+          <a class="cert-card" href="assets/cert-14.jpg" target="_blank" rel="noopener"><img src="assets/cert-14.jpg" alt="Свидетельство практики консультирования"></a>
+          <a class="cert-card" href="assets/cert-15.jpg" target="_blank" rel="noopener"><img src="assets/cert-15.jpg" alt="Благодарность"></a>
+          <a class="cert-card" href="assets/cert-16.jpg" target="_blank" rel="noopener"><img src="assets/cert-16.jpg" alt="Сертификат кризисного центра"></a>
+          <a class="cert-card" href="assets/cert-17.jpg" target="_blank" rel="noopener"><img src="assets/cert-17.jpg" alt="Свидетельство сложного моделирования"></a>
+          <a class="cert-card" href="assets/cert-18.jpg" target="_blank" rel="noopener"><img src="assets/cert-18.jpg" alt="Сертификат семинара"></a>
+          <a class="cert-card" href="assets/cert-19.jpg" target="_blank" rel="noopener"><img src="assets/cert-19.jpg" alt="Диплом проекта"></a>
+          <a class="cert-card" href="assets/cert-20.jpg" target="_blank" rel="noopener"><img src="assets/cert-20.jpg" alt="Сертификат психолого-педагогической работы"></a>
+          <a class="cert-card" href="assets/cert-21.jpg" target="_blank" rel="noopener"><img src="assets/cert-21.jpg" alt="Сертификат Северное сияние"></a>
+        </div>
+        <div class="center">
+          <a class="btn secondary" href="https://vk.com/album184838246_284232035" target="_blank" rel="noopener">Смотреть все сертификаты во ВКонтакте</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="cta">
+      <div class="container cta-box">
+        <div>
+          <h2>Готовы записаться на консультацию?</h2>
+          <p>Если вы готовы уделить себе время и направить внимание на то, что происходит в вашей жизни, буду рад встрече.</p>
+          <a class="btn primary" href="https://vk.com/psihologchilkin" target="_blank" rel="noopener">Записаться</a>
+        </div>
+        <div class="contact-list">
+          <div>ВКонтакте<span>vk.ru/psihologchilkin</span></div>
+          <div>Телефон<span>8 952 308 76 79</span></div>
+          <div>Северодвинск / Онлайн<span>Работаю очно и онлайн</span></div>
+        </div>
+        <img class="footer-photo" src="assets/about-new.jpg" alt="Валерий Чилкин">
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Валерий Чилкин - практикующий психолог. Все права защищены.</div>
+  </footer>
+</body>
+</html>
