@@ -202,16 +202,22 @@
     .fact:first-child { padding-left: 0; }
     .fact:last-child { border-right: 0; }
 
+    .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
     .icon {
       flex: 0 0 auto;
       width: 45px;
       height: 45px;
-      display: grid;
-      place-items: center;
+      display: block;
+      padding: 11px;
       border-radius: 12px;
       color: var(--olive);
       background: #f1f5f9;
-      font-size: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     section { padding: 28px 0; }
@@ -499,16 +505,36 @@
     }
 
     @media (max-width: 620px) {
+      .header { position: relative; backdrop-filter: none; border-bottom: 1px solid var(--line); }
       .container {
         width: min(100% - 28px, 1120px);
       }
 
       .nav {
-        min-height: 68px;
+        min-height: 64px;
+        gap: 10px;
       }
 
+      .brand { min-width: 0; }
+
       .brand strong {
-        font-size: 21px;
+        font-size: 16px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .brand span {
+        display: block;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+
+      .nav > .btn {
+        width: auto;
+        min-height: 40px;
+        padding: 0 14px;
+        font-size: 12px;
+        white-space: nowrap;
       }
 
       .hero-copy {
@@ -535,10 +561,30 @@
       .cta-box {
         padding: 22px;
       }
+
+      .hero-photo { margin: 0 -14px; min-height: 310px; }
     }
   </style>
 </head>
 <body>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-14 4h3m4 0h3m-10 4h3"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2H3Zm13-15a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5h-4"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-3.5-.7L3 21l1.7-5a8.5 8.5 0 1 1 15.3-4.5Z"/><path d="M8 11h8m-8 4h5"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 3v5c4 3 8 3 12 0v-5m4-3v7"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 .3l2-2a5 5 0 0 0-7-7l-1.5 1.5M14 11a5 5 0 0 0-7-.3l-2 2a5 5 0 0 0 7 7l1.5-1.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.2-8.8 10.6-8.8 10.6S3.2 12.8 3.2 8.6a5 5 0 0 1 8.8-3.2 5 5 0 0 1 8.8 3.2Z"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h11a4 4 0 0 0 .5-8 7 7 0 0 0-13-1A4.5 4.5 0 0 0 7 18Z"/></symbol>
+    <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2H5Z"/></symbol>
+    <symbol id="i-presentation" viewBox="0 0 24 24"><path d="M3 4h18v12H3V4Zm9 12v5m-4 0h8m-8-9 3-3 2 2 3-3"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10H3V11Zm6 10v-7h6v7"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 10 4-3v10l-4-3"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 4V5Zm4 4h8m-8 4h6"/></symbol>
+  </svg>
   <header class="header">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="На главную">
@@ -572,10 +618,10 @@
     </section>
 
     <div class="container facts" aria-label="Ключевая информация">
-      <div class="fact"><span class="icon">▣</span>В профессии<br>с 2013 года</div>
-      <div class="fact"><span class="icon">⌖</span>Очно в Северодвинске<br>и онлайн</div>
-      <div class="fact"><span class="icon">☷</span>Опыт работы с подростками<br>и взрослыми</div>
-      <div class="fact"><span class="icon">○</span>Тренинги<br>и индивидуальные консультации</div>
+      <div class="fact"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>В профессии<br>с 2013 года</div>
+      <div class="fact"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Очно в Северодвинске<br>и онлайн</div>
+      <div class="fact"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>Опыт работы с подростками<br>и взрослыми</div>
+      <div class="fact"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Тренинги<br>и индивидуальные консультации</div>
     </div>
 
     <section id="about">
@@ -590,15 +636,15 @@
         </div>
         <aside class="info-card" aria-label="Образование и подход">
           <div class="info-item">
-            <span class="icon">▱</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg>
             <div><b>Образование</b><span>ГИ филиала САФУ, гуманитарный институт, кафедра педагогики.</span></div>
           </div>
           <div class="info-item">
-            <span class="icon">▤</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-book"/></svg>
             <div><b>Дополнительное образование</b><span>Регулярно прохожу обучение, участвую в семинарах и программах повышения квалификации.</span></div>
           </div>
           <div class="info-item">
-            <span class="icon">♙</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
             <div><b>Подход</b><span>Конфиденциальность, уважение и бережное отношение к вашей истории.</span></div>
           </div>
         </aside>
@@ -610,13 +656,13 @@
         <div>
           <h2 class="section-title">С какими вопросами можно обратиться</h2>
           <div class="request-list">
-            <div class="request"><span class="icon">∞</span>Межличностные отношения</div>
-            <div class="request"><span class="icon">♧</span>Детско-родительские отношения</div>
-            <div class="request"><span class="icon">♡</span>Переживания горя, утраты</div>
-            <div class="request"><span class="icon">◇</span>Потеря смыслов</div>
-            <div class="request"><span class="icon">☁</span>Тревожность, страхи</div>
-            <div class="request"><span class="icon">♙</span>Самооценка</div>
-            <div class="request"><span class="icon">☷</span>Тренинги с детьми и взрослыми</div>
+            <div class="request"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>Межличностные отношения</div>
+            <div class="request"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>Детско-родительские отношения</div>
+            <div class="request"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Переживания горя, утраты</div>
+            <div class="request"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg>Потеря смыслов</div>
+            <div class="request"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg>Тревожность, страхи</div>
+            <div class="request"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg>Самооценка</div>
+            <div class="request"><svg class="icon" aria-hidden="true"><use href="#i-presentation"/></svg>Тренинги с детьми и взрослыми</div>
           </div>
         </div>
         <aside class="not-work">
@@ -635,15 +681,15 @@
         <h2 class="section-title">Формат работы</h2>
         <div class="work-grid">
           <article class="work-card">
-            <span class="icon">▢</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>
             <div><h3>Очные консультации</h3><p><b>Северодвинск</b><br>Уютный кабинет для личной встречи и доверительного разговора.</p></div>
           </article>
           <article class="work-card">
-            <span class="icon">▭</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-video"/></svg>
             <div><h3>Онлайн-консультации</h3><p>Любой удобный для вас мессенджер. Встречаемся онлайн из любой точки мира.</p></div>
           </article>
           <article class="work-card">
-            <span class="icon">✉</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>
             <div><h3>Запись</h3><p>Напишите мне в личные сообщения <a href="https://vk.ru/psihologchilkin" target="_blank" rel="noopener">во ВКонтакте</a>.</p></div>
           </article>
         </div>
